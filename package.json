@@ -1,5 +1,5 @@
 {
-  "name": "tsdev-au",
+  "name": "@tsdevau/website",
   "version": "0.0.1",
   "description": "tsdev.au website with Astro, Tailwind CSS, and TypeScript",
   "keywords": [
@@ -14,11 +14,11 @@
   "homepage": "https://tsdev.au",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tsdevau/tsdev-au.git"
+    "url": "https://github.com/tsdevau/tsdevau/website.git"
   },
   "license": "CC BY-NC-SA 4.0",
   "author": {
-    "name": "tsdev.au",
+    "name": "@tsdevau",
     "email": "github@tsdev.au",
     "url": "https://tsdev.au"
   },
