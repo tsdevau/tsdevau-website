@@ -4,6 +4,7 @@ import solidJs from "@astrojs/solid-js"
 import tailwind from "@astrojs/tailwind"
 import icons from "astro-icon"
 import { defineConfig } from "astro/config"
+import tsconfigPaths from "vite-tsconfig-paths"
 
 // https://astro.build/config
 export default defineConfig({
