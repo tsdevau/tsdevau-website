@@ -15,5 +15,5 @@ export default defineConfig({
   vite: {
     plugins: [tsconfigPaths()],
   },
-  integrations: [mdx(), sitemap(), solidJs(), tailwind({ applyBaseStyles: false }), icons()],
+  integrations: [mdx(), sitemap(), solidJs(), tailwind(), icons()],
 })

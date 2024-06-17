@@ -1,61 +1,43 @@
-import defaultTheme from "tailwindcss/defaultTheme"
-
 /** @type {import('tailwindcss').Config} */
-export default {
-  darkMode: ["class"],
+
+module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
+  darkMode: "selector",
   theme: {
     extend: {
-      fontFamily: {
-        "sans": ["Atkinson", ...defaultTheme.fontFamily.sans],
-      },
-      typography: {
-        DEFAULT: {
-          css: {
-            maxWidth: "full",
-          },
+      colors: {
+        grey: {
+          0: "var(--grey-0) / <alpha-value>)",
+          50: "var(--grey-50) / <alpha-value>)",
+          100: "var(--grey-100) / <alpha-value>)",
+          200: "var(--grey-200) / <alpha-value>)",
+          300: "var(--grey-300) / <alpha-value>)",
+          400: "var(--grey-400) / <alpha-value>)",
+          500: "var(--grey-500) / <alpha-value>)",
+          600: "var(--grey-600) / <alpha-value>)",
+          700: "var(--grey-700) / <alpha-value>)",
+          800: "var(--grey-800) / <alpha-value>)",
+          900: "var(--grey-900) / <alpha-value>)",
+          999: "var(--grey-999) / <alpha-value>)",
+          "999-basis": "var(--grey-999-basis) / <alpha-value>)",
         },
-      },
-      rotate: {
-        "45": "45deg",
-        "135": "135deg",
-        "225": "225deg",
-        "315": "315deg",
-      },
-      animation: {
-        twinkle: "twinkle 2s ease-in-out forwards",
-        meteor: "meteor 3s ease-in-out forwards",
-      },
-      keyframes: {
-        twinkle: {
-          "0%": { 
-            opacity: 0, 
-            transform: "rotate(0deg)" 
-          },
-          "50%": { 
-            opacity: 1,
-            transform: "rotate(180deg)" 
-          },
-          "100%": { 
-            opacity: 0, 
-            transform: "rotate(360deg)" 
-          },
+        accent: {
+          regular: "var(--accent-regular) / <alpha-value>)",
+          light: "var(--accent-light) / <alpha-value>)",
+          dark: "var(--accent-dark) / <alpha-value>)",
+          overlay: "var(--accent-overlay) / <alpha-value>)",
+          "subtle-overlay": "var(--accent-subtle-overlay) / <alpha-value>)",
+          "text-over": "var(--accent-text-over) / <alpha-value>)",
         },
-        meteor: {
-          "0%": { 
-            opacity: 0, 
-            transform: "translateY(200%)" 
-          },
-          "50%": { 
-            opacity: 1  
-          },
-          "100%": { 
-            opacity: 0, 
-            transform: "translateY(0)" 
-          },
+        link: {
+          DEFAULT: "var(--link)/ <alpha-value>)",
         },
       },
     },
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/typography"),
+    require("tailwindcss-animated"),
+  ],
 }

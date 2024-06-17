@@ -2,149 +2,260 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global variables */
 @layer base {
-  @font-face {
-    font-family: "Atkinson";
-    src: url("/fonts/atkinson-regular.woff") format("woff");
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
+  :root {
+    /* Colors */
+    --grey-0: rgb(9, 11, 17);
+    --grey-50: rgb(20, 25, 37);
+    --grey-100: rgb(40, 48, 68);
+    --grey-200: rgb(61, 70, 99);
+    --grey-300: rgb(80, 93, 132);
+    --grey-400: rgb(100, 116, 162);
+    --grey-500: rgb(132, 144, 181);
+    --grey-600: rgb(163, 172, 200);
+    --grey-700: rgb(195, 202, 219);
+    --grey-800: rgb(227, 230, 238);
+    --grey-900: rgb(243, 244, 247);
+    --grey-999: rgb(255, 255, 255);
+    --grey-999-basis: 0, 0%, 100%;
+    --grey-999_40: hsla(var(--grey-999-basis), 0.4);
+
+    --accent-light: rgb(97, 197, 246);
+    --accent-regular: rgb(91, 188, 166);
+    --accent-dark: rgb(0, 77, 86);
+    --accent-overlay: rgb(78, 202, 177);
+    --accent-subtle-overlay: var(--accent-overlay);
+    --accent-text-over: var(--grey-999);
+
+    --link-color: var(--accent-regular);
+
+    /* Gradients */
+    --gradient-stop-1: var(--accent-light);
+    --gradient-stop-2: var(--accent-regular);
+    --gradient-stop-3: var(--accent-dark);
+    --gradient-subtle: linear-gradient(150deg, var(--grey-900) 19%, var(--grey-999) 150%);
+    --gradient-accent: linear-gradient(
+      150deg,
+      var(--gradient-stop-1),
+      var(--gradient-stop-2),
+      var(--gradient-stop-3)
+    );
+    --gradient-accent-purple: linear-gradient(
+      150deg,
+      #4c11c6,
+      var(--accent-regular),
+      var(--accent-dark)
+    );
+    --gradient-stroke: linear-gradient(180deg, var(--grey-900), var(--grey-700));
+
+    /* Shadows */
+    --shadow-sm: 0px 6px 3px rgba(9, 11, 17, 0.01), 0px 4px 2px rgba(9, 11, 17, 0.01),
+      0px 2px 2px rgba(9, 11, 17, 0.02), 0px 0px 1px rgba(9, 11, 17, 0.03);
+    --shadow-md: 0px 28px 11px rgba(9, 11, 17, 0.01), 0px 16px 10px rgba(9, 11, 17, 0.03),
+      0px 7px 7px rgba(9, 11, 17, 0.05), 0px 2px 4px rgba(9, 11, 17, 0.06);
+    --shadow-lg: 0px 62px 25px rgba(9, 11, 17, 0.01), 0px 35px 21px rgba(9, 11, 17, 0.05),
+      0px 16px 16px rgba(9, 11, 17, 0.1), 0px 4px 9px rgba(9, 11, 17, 0.12);
+
+    /* Text Sizes */
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-md: 1.125rem;
+    --text-lg: 1.25rem;
+    --text-xl: 1.625rem;
+    --text-2xl: 2.125rem;
+    --text-3xl: 2.625rem;
+    --text-4xl: 3.5rem;
+    --text-5xl: 4.5rem;
+
+    /* Fonts */
+    --font-system: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+      Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    --font-body: "Public Sans", var(--font-system);
+    --font-brand: Rubik, var(--font-system);
+
+    /* Transitions */
+    --theme-transition: 0.2s ease-in-out;
   }
 
-  @font-face {
-    font-family: "Atkinson";
-    src: url("/fonts/atkinson-bold.woff") format("woff");
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
+  .theme-dark {
+    --grey-0: rgb(255, 255, 255);
+    --grey-50: rgb(243, 244, 247);
+    --grey-100: rgb(227, 230, 238);
+    --grey-200: rgb(195, 202, 219);
+    --grey-300: rgb(163, 172, 200);
+    --grey-400: rgb(132, 144, 181);
+    --grey-500: rgb(100, 116, 162);
+    --grey-600: rgb(80, 93, 132);
+    --grey-700: rgb(61, 70, 99);
+    --grey-800: rgb(40, 48, 68);
+    --grey-900: rgb(20, 25, 37);
+    --grey-999: rgb(9, 11, 17);
+    --grey-999-basis: 225, 31%, 5%;
+
+    --accent-light: rgb(0, 77, 86);
+    --accent-regular: rgb(91, 188, 166);
+    --accent-dark: rgb(0, 109, 86);
+    --accent-overlay: rgb(78, 202, 175);
+    --accent-subtle-overlay: rgb(46, 127, 111);
+    --accent-text-over: var(--grey-0);
+
+    --link-color: var(--accent-dark);
+
+    --gradient-stop-1: #4c11c6;
+    --gradient-subtle: linear-gradient(150deg, var(--grey-900) 19%, var(--grey-999) 81%);
+    --gradient-accent-purple: linear-gradient(
+      150deg,
+      #4c11c6,
+      var(--accent-regular),
+      var(--accent-light)
+    );
+    --gradient-stroke: linear-gradient(180deg, var(--grey-600), var(--grey-800));
+
+    --shadow-sm: 0px 6px 3px rgba(255, 255, 255, 0.01), 0px 4px 2px rgba(255, 255, 255, 0.01),
+      0px 2px 2px rgba(255, 255, 255, 0.02), 0px 0px 1px rgba(255, 255, 255, 0.03);
+    --shadow-md: 0px 28px 11px rgba(255, 255, 255, 0.01), 0px 16px 10px rgba(255, 255, 255, 0.03),
+      0px 7px 7px rgba(255, 255, 255, 0.05), 0px 2px 4px rgba(255, 255, 255, 0.06);
+    --shadow-lg: 0px 62px 25px rgba(255, 255, 255, 0.01), 0px 35px 21px rgba(255, 255, 255, 0.05),
+      0px 16px 16px rgba(255, 255, 255, 0.1), 0px 4px 9px rgba(255, 255, 255, 0.12);
   }
-}
-
-html {
-  overflow-y: scroll;
-  color-scheme: light;
-  background-color: white;
-  font-family: "Atkinson", sans-serif;
-}
-
-html.dark {
-  color-scheme: dark;
-  background-color: black;
 }
 
 html,
 body {
-  @apply h-full w-full antialiased;
-  @apply bg-white dark:bg-black;
-  @apply text-black/75 dark:text-white/75;
+  min-height: 100%;
+  overflow-x: hidden;
 }
 
 body {
-  @apply relative flex flex-col;
+  background-color: var(--grey-999);
+  color: var(--grey-200);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
 }
 
-main {
-  @apply flex flex-1 flex-col bg-white dark:bg-black;
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
 }
 
-header {
-  @apply border-b;
-  @apply transition-all duration-300 ease-in-out;
+img {
+  max-width: 100%;
+  height: auto;
 }
 
-header:not(.scrolled) {
-  @apply border-transparent bg-transparent;
+a {
+  color: var(--link-color);
 }
 
-header.scrolled {
-  @apply bg-white/75 dark:bg-black/50;
-  @apply border-black/10 dark:border-white/25;
-  @apply saturate-200 backdrop-blur-sm;
+h1,
+h2,
+h3,
+h4,
+h5 {
+  line-height: 1.1;
+  font-family: var(--font-brand);
+  font-weight: 600;
+  color: var(--grey-100);
 }
 
-article {
-  @apply prose max-w-full pb-12 dark:prose-invert;
+h1 {
+  font-size: var(--text-5xl);
 }
 
-.page-heading {
-  @apply font-semibold text-black dark:text-white;
+h2 {
+  font-size: var(--text-4xl);
 }
 
-.blend {
-  @apply transition-all duration-300 ease-in-out;
+h3 {
+  font-size: var(--text-3xl);
 }
 
-/** Light theme particles on home page */
-@keyframes animateParticle {
-  from {
-    transform: translateY(0px);
+h4 {
+  font-size: var(--text-2xl);
+}
+
+h5 {
+  font-size: var(--text-xl);
+}
+
+/* Utilities */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 83rem;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+.gap-4 {
+  gap: 1rem;
+}
+.gap-8 {
+  gap: 2rem;
+}
+.gap-10 {
+  gap: 2.5rem;
+}
+.gap-15 {
+  gap: 3.75rem;
+}
+.gap-20 {
+  gap: 5rem;
+}
+.gap-30 {
+  gap: 7.5rem;
+}
+.gap-48 {
+  gap: 12rem;
+}
+
+@media (min-width: 50em) {
+  .lg\:gap-2 {
+    gap: 0.5rem;
   }
-  to {
-    transform: translateY(-2000px);
+  .lg\:gap-4 {
+    gap: 1rem;
   }
-}
-
-/** styles for public /animation.js */
-.animate {
-  opacity: 0;
-  transform: translateY(50px);
-  transition:
-    opacity 1s ease,
-    transform 1s ease;
-}
-
-.animate.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-article img {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  display: block;
-  margin: 0 auto;
-}
-
-/**
- * TWINKLE STARS
- */
-
-#twinkle-star.template {
-  @apply absolute -left-full; /* hide offscreen */
-}
-
-#twinkle-star.twinkle {
-  @apply animate-twinkle; /* defined in tailwind.config */
-}
-
-/**
- * Meteors
- */
-
-#meteors .shower {
-  @apply absolute inset-0 top-0;
-  @apply left-1/2 -translate-x-1/2;
-  @apply aspect-square w-screen;
-}
-
-#meteors .meteor {
-  @apply animate-meteor; /* defined in tailwind.config */
-  @apply absolute left-1/2 top-1/2 h-[75vh] w-px;
-  @apply bg-gradient-to-b from-white to-transparent;
-}
-
-#meteors .shower.ur {
-  @apply rotate-45;
-}
-
-#meteors .shower.dr {
-  @apply rotate-135;
-}
-
-#meteors .shower.dl {
-  @apply rotate-225;
-}
-
-#meteors .shower.ul {
-  @apply rotate-315;
+  .lg\:gap-8 {
+    gap: 2rem;
+  }
+  .lg\:gap-10 {
+    gap: 2.5rem;
+  }
+  .lg\:gap-15 {
+    gap: 3.75rem;
+  }
+  .lg\:gap-20 {
+    gap: 5rem;
+  }
+  .lg\:gap-30 {
+    gap: 7.5rem;
+  }
+  .lg\:gap-48 {
+    gap: 12rem;
+  }
 }

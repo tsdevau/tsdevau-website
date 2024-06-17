@@ -1,0 +1,81 @@
+---
+import { Icon } from "astro-icon/components"
+---
+
+<section class="box skills">
+  <div class="stack gap-2 lg:gap-4">
+    <Icon
+      name="material-symbols:terminal"
+      class="h-16 w-16 text-accent-regular"
+    />
+    <h2 class="mt-0">Full Stack Development</h2>
+    <p class="text-grey-400">
+      As a full stack developer, I have experience with both front-end and back-end technologies. I
+      can build a complete applications from scratch, or work on existing projects.
+    </p>
+  </div>
+  <div class="stack gap-2 lg:gap-4">
+    <Icon
+      name="mdi:business-outline"
+      class="h-16 w-16 text-accent-regular"
+    />
+    <h2 class="mt-0">SMB Experience</h2>
+    <p class="text-grey-400">
+      I have experience working as and with small and medium-sized businesses. I understand the
+      unique challenges that SMBs face. I can help you find or build a tailored solution for your
+      business.
+    </p>
+  </div>
+  <div class="stack gap-2 lg:gap-4">
+    <Icon
+      name="material-symbols:event-repeat-outline-sharp"
+      class="h-16 w-16 text-accent-regular"
+    />
+    <h2 class="mt-0">Strategic Automation</h2>
+    <p class="text-grey-400">
+      I can help you automate repetitive tasks, so you can focus on more important things. I can
+      build custom scripts and tools to help you save time and increase productivity.
+    </p>
+  </div>
+</section>
+
+<style>
+  .box {
+    border: 1px solid var(--grey-800);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    background-color: var(--grey-999_40);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .skills {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .skills h2 {
+    font-size: var(--text-lg);
+  }
+
+  .skills p {
+    color: var(--grey-400);
+  }
+
+  @media (min-width: 50em) {
+    .box {
+      border-radius: 1.5rem;
+      padding: 2.5rem;
+    }
+
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5rem;
+    }
+
+    .skills h2 {
+      font-size: var(--text-2xl);
+    }
+  }
+</style>

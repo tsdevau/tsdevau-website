@@ -1,287 +1,240 @@
 ---
+import profilePic from "@assets/tim-profile.jpg"
+import CallToAction from "@components/CallToAction.astro"
+import Grid from "@components/Grid.astro"
+import Hero from "@components/Hero.astro"
+import Icon from "@components/Icon.astro"
+import Pill from "@components/Pill.astro"
+import PortfolioPreview from "@components/PortfolioPreview.astro"
+import BaseLayout from "@layouts/BaseLayout.astro"
+import { Image } from "astro:assets"
 import { getCollection } from "astro:content"
-import PageLayout from "@layouts/PageLayout.astro"
-import ArrowCard from "@components/ArrowCard"
-import StackCard from "@components/StackCard.astro"
-import { SITE, SOCIALS } from "@/constants"
-import TwinklingStars from "@components/TwinklingStars.astro"
-import MeteorShower from "@components/MeteorShower.astro"
+import ContactCTA from "../components/ContactCTA.astro"
+import Skills from "../components/Skills.astro"
 
-const posts = (await getCollection("blog"))
-  .filter((post) => !post.data.draft)
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-  .slice(0, 3)
-
+// Content Fetching: List four most recent work projects
 const projects = (await getCollection("projects"))
-  .filter((project) => !project.data.draft)
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-  .slice(0, 3)
-
-const stack = [
-  {
-    text: "Astro",
-    icon: "astro",
-    href: "https://astro.build",
-  },
-  {
-    text: "Javascript",
-    icon: "javascript",
-    href: "https://www.javascript.com",
-  },
-  {
-    text: "Typescript",
-    icon: "typescript",
-    href: "https://www.typescriptlang.org",
-  },
-  {
-    text: "Tailwind",
-    icon: "tailwind",
-    href: "https://tailwindcss.com",
-  },
-]
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+  .slice(0, 4)
 ---
 
-<PageLayout
-  title="Home"
-  description={SITE.DESCRIPTION}>
-  <!-- Light Mode: Particles -->
-  <div class="absolute inset-0 block dark:hidden">
-    <div
-      id="particles1"
-      class="fixed inset-0">
-    </div>
-    <div
-      id="particles2"
-      class="fixed inset-0">
-    </div>
-    <div
-      id="particles3"
-      class="fixed inset-0">
-    </div>
-  </div>
-
-  <!-- Dark Theme: Stars -->
-  <div class="absolute inset-0 hidden bg-black dark:block">
-    <div
-      id="stars1"
-      class="fixed inset-0">
-    </div>
-    <div
-      id="stars2"
-      class="fixed inset-0">
-    </div>
-    <div
-      id="stars3"
-      class="fixed inset-0">
-    </div>
-  </div>
-
-  <!-- Dark Theme: Twinkling Stars / Metors -->
-  <div
-    id="galaxy"
-    class="fixed inset-0">
-    <div class="hidden dark:block">
-      <TwinklingStars />
-      <MeteorShower />
-    </div>
-  </div>
-
-  <script
-    is:inline
-    src="/js/bg.js"
-  ></script>
-
-  <!-- HERO -->
-  <section class="relative h-screen w-full">
-    <div
-      id="planetcont"
-      class="animate absolute inset-0 top-1/4 overflow-hidden">
-      <div
-        id="crescent"
-        class="absolute left-1/2 top-0 aspect-square min-h-[100vh] w-[250vw] -translate-x-1/2 rounded-full bg-gradient-to-b from-black/25 from-0% to-transparent to-5% p-[1px] dark:from-white/75">
-        <div
-          id="planet"
-          class="flex h-full w-full justify-center overflow-hidden rounded-full bg-white p-[1px] dark:bg-black">
-          <div
-            id="blur"
-            class="h-20 w-full rounded-full bg-neutral-900/25 blur-3xl dark:bg-white/25">
+<BaseLayout>
+  <div class="stack gap-20 lg:gap-48">
+    <div class="wrapper stack gap-8 lg:gap-20">
+      <header class="hero">
+        <Hero
+          title="Hello, my name is Tim Stone"
+          tagline="I am a Creative Developer who is currently based in Portland, Oregon."
+          align="start">
+          <div class="roles">
+            <Pill
+              ><Icon
+                icon="code"
+                size="1.33em"
+              /> Developer</Pill
+            >
+            <Pill
+              ><Icon
+                icon="microphone-stage"
+                size="1.33em"
+              /> Business-Minded</Pill
+            >
+            <Pill
+              ><Icon
+                icon="pencil-line"
+                size="1.33em"
+              /> Task-Oriented</Pill
+            >
           </div>
-        </div>
-      </div>
+        </Hero>
+
+        <Image
+          src={profilePic}
+          alt="Tim Stone in a maroon Queensland State of Origin shirt, with a can of Jack Daniels & Cola, standing outside on a Gold Coast Hinterland acreage property."
+          width="480"
+          height="620"
+        />
+      </header>
+
+      <Skills />
     </div>
-    <div class="animate absolute flex h-full w-full items-center justify-center">
-      <div class="relative flex h-full w-full items-center justify-center">
-        <div class="p-5 text-center">
-          <p class="animated text-lg font-semibold opacity-75 md:text-xl lg:text-2xl">
-            Hello, I am Mark
-          </p>
-          <p
-            class="animated text-2xl font-bold uppercase text-black dark:text-white md:text-3xl lg:text-4xl">
-            Software Engineer
-          </p>
-          <p class="animated text-sm opacity-75 md:text-base lg:text-lg">
-            Currently designing products for humans.
-          </p>
-          <div
-            id="ctaButtons"
-            class="animated mt-5 flex flex-wrap justify-center gap-4">
-            <a
-              href="/blog"
-              class="blend truncate rounded bg-black px-4 py-2 text-xs text-white hover:opacity-75 dark:bg-white dark:text-black md:text-sm lg:text-base">
-              Read my blog
-            </a>
-            <a
-              href="/work"
-              class="blend truncate rounded border border-black/25 px-4 py-2 text-xs hover:bg-black/5 dark:border-white/25 hover:dark:bg-white/15 md:text-sm lg:text-base">
-              View my work
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <div class="relative bg-white dark:bg-black">
-    <div class="mx-auto max-w-screen-sm space-y-24 p-5 pb-16">
-      <!-- About Section -->
-      <section class="animate">
-        <article>
-          <p>
-            I am a <b><i>software engineer</i></b>, <b><i>ui/ux designer</i></b>, <b
-              ><i>product planner</i></b
-            >, <b><i>mentor</i></b>, <b><i>student</i></b>, <b><i>minimalist</i></b>, <b
-              ><i>eternal optimist</i></b
-            >, <b><i>crypto enthusiast</i></b> and <b><i>sarcasm connoisseur</i></b>.
-          </p>
-          <p>
-            I love to both build and break things. I am motivated by challenging projects with
-            self-guided research and dynamic problem solving. My true passion is crafting creative
-            front end designs with unique takes on color, typography and motion.
-          </p>
-          <p>During my career</p>
-          <p>
-            I have built products ranging from marketing and ecommerce websites to complex
-            enterprise apps with focus on delivering fast, elegant code along with delightful user
-            interfaces.
-          </p>
-          <p>Now</p>
-          <p>
-            I currently work as a software engineer at StreamlineFS, where I do product planning,
-            design and development.
-          </p>
-        </article>
-      </section>
+    <main class="wrapper stack gap-20 lg:gap-48">
+      <section class="section with-background with-cta">
+        <header class="section-header stack gap-2 lg:gap-4">
+          <h3>Selected Work</h3>
+          <p>Take a look below at some of my featured work for clients from the past few years.</p>
+        </header>
 
-      <!-- Blog Preview Section -->
-      <section class="animate">
-        <div class="space-y-4">
-          <div class="flex justify-between">
-            <p class="font-semibold text-black dark:text-white">Recent posts</p>
-            <a
-              href="/blog"
-              class="blend group col-span-3 flex w-fit items-center gap-1 text-black underline decoration-black/25 decoration-[.5px] underline-offset-2 hover:decoration-black dark:text-white dark:decoration-white/50 dark:hover:decoration-white">
-              <span
-                class="blend text-black/75 group-hover:text-black dark:text-white/75 group-hover:dark:text-white">
-                All posts
-              </span>
-            </a>
-          </div>
-          <ul class="space-y-4">
-            {
-              posts.map((post) => (
-                <li>
-                  <ArrowCard entry={post} />
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-      </section>
-
-      <!-- Tech Stack Section -->
-      <section class="animate">
-        <div class="space-y-4">
-          <p class="font-semibold text-black dark:text-white">Website build with</p>
-          <div class="mt-5 flex flex-wrap items-center gap-2">
-            {
-              stack.map((item) => (
-                <StackCard
-                  text={item.text}
-                  icon={item.icon}
-                  href={item.href}
-                />
-              ))
-            }
-          </div>
-          <div>
-            Performing reactivity and statefulness, special guest
-            <a
-              href="https://www.solidjs.com/"
-              target="_blank"
-              class="blend group w-fit text-black underline decoration-black/25 decoration-[.5px] underline-offset-2 hover:decoration-black dark:text-white dark:decoration-white/50 dark:hover:decoration-white">
-              <span
-                class="blend text-black/75 group-hover:text-black dark:text-white/75 group-hover:dark:text-white">
-                SolidJS
-              </span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- Project Preview Section -->
-      <section class="animate">
-        <div class="space-y-4">
-          <div class="flex justify-between">
-            <p class="font-semibold text-black dark:text-white">Recent projects</p>
-            <a
-              href="/projects"
-              class="blend group col-span-3 flex w-fit items-center gap-1 text-black underline decoration-black/25 decoration-[.5px] underline-offset-2 hover:decoration-black dark:text-white dark:decoration-white/50 dark:hover:decoration-white">
-              <span
-                class="blend text-black/75 group-hover:text-black dark:text-white/75 group-hover:dark:text-white">
-                All projects
-              </span>
-            </a>
-          </div>
-          <ul class="space-y-4">
+        <div class="gallery">
+          <Grid variant="offset">
             {
               projects.map((project) => (
                 <li>
-                  <ArrowCard entry={project} />
+                  <PortfolioPreview project={project} />
                 </li>
               ))
             }
-          </ul>
+          </Grid>
         </div>
-      </section>
 
-      <!-- Contact Section -->
-      <section class="animate">
-        <div>
-          <p class="font-semibold text-black dark:text-white">Let's Connect</p>
-          <p>Reach out to me via email or on social media.</p>
-          <div class="mt-4 grid auto-cols-min grid-cols-4 gap-y-2">
-            {
-              SOCIALS.map((social) => (
-                <>
-                  <div class="col-span-1 flex items-center gap-1">
-                    <span class="truncate whitespace-nowrap">{social.NAME}</span>
-                  </div>
-                  <div class="col-span-3 truncate">
-                    <a
-                      href={social.HREF}
-                      target="_blank"
-                      class="blend group col-span-3 flex w-fit items-center gap-1 text-black underline decoration-black/25 decoration-[.5px] underline-offset-2 hover:decoration-black dark:text-white dark:decoration-white/50 dark:hover:decoration-white">
-                      <span class="blend text-black/75 group-hover:text-black dark:text-white/75 group-hover:dark:text-white">
-                        {social.TEXT}
-                      </span>
-                    </a>
-                  </div>
-                </>
-              ))
-            }
-          </div>
+        <div class="cta">
+          <CallToAction href="/projects/">
+            View All
+            <Icon
+              icon="arrow-right"
+              size="1.2em"
+            />
+          </CallToAction>
         </div>
       </section>
-    </div>
+    </main>
+
+    <ContactCTA />
   </div>
-</PageLayout>
+</BaseLayout>
+
+<style>
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .roles {
+    display: none;
+  }
+
+  .hero img {
+    aspect-ratio: 5 / 4;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 1.5rem;
+    box-shadow: var(--shadow-md);
+  }
+
+  @media (min-width: 50em) {
+    .hero {
+      display: grid;
+      grid-template-columns: 6fr 4fr;
+      padding-inline: 2.5rem;
+      gap: 3.75rem;
+    }
+
+    .roles {
+      margin-top: 0.5rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .hero img {
+      aspect-ratio: 3 / 4;
+      border-radius: 4.5rem;
+      object-fit: cover;
+    }
+  }
+
+  /* ====================================================== */
+
+  .section {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .with-background {
+    position: relative;
+  }
+
+  .with-background::before {
+    --hero-bg: var(--bg-image-subtle-2);
+
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    left: 50%;
+    width: 100vw;
+    aspect-ratio: calc(2.25 / var(--bg-scale));
+    top: 0;
+    transform: translateY(-75%) translateX(-50%);
+    background:
+      url("/assets/backgrounds/noise.png") top center/220px repeat,
+      var(--hero-bg) center center / var(--bg-gradient-size) no-repeat,
+      var(--grey-999);
+    background-blend-mode: overlay, normal, normal, normal;
+    mix-blend-mode: var(--bg-blend-mode);
+    z-index: -1;
+  }
+
+  .with-background.bg-variant::before {
+    --hero-bg: var(--bg-image-subtle-1);
+  }
+
+  .section-header {
+    justify-self: center;
+    text-align: center;
+    max-width: 50ch;
+    font-size: var(--text-md);
+    color: var(--grey-300);
+  }
+
+  .section-header h3 {
+    font-size: var(--text-2xl);
+  }
+
+  @media (min-width: 50em) {
+    .section {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-areas: "header header header header" "gallery gallery gallery gallery";
+      gap: 5rem;
+    }
+
+    .section.with-cta {
+      grid-template-areas: "header header header cta" "gallery gallery gallery gallery";
+    }
+
+    .section-header {
+      grid-area: header;
+      font-size: var(--text-lg);
+    }
+
+    .section-header h3 {
+      font-size: var(--text-4xl);
+    }
+
+    .with-cta .section-header {
+      justify-self: flex-start;
+      text-align: left;
+    }
+
+    .gallery {
+      grid-area: gallery;
+    }
+
+    .cta {
+      grid-area: cta;
+    }
+  }
+
+  /* ====================================================== */
+
+  .mention-card {
+    display: flex;
+    height: 7rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 1px solid var(--grey-800);
+    border-radius: 1.5rem;
+    color: var(--grey-300);
+    background: var(--gradient-subtle);
+    box-shadow: var(--shadow-sm);
+  }
+
+  @media (min-width: 50em) {
+    .mention-card {
+      border-radius: 1.5rem;
+      height: 9.5rem;
+    }
+  }
+</style>
