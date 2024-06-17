@@ -1,6 +1,6 @@
 {
   "packages": {
-    ".": "0.0.1"
+    ".": "1.0.1"
   },
   "package-name": "tsdev-au",
   "release-commit-message-pattern": "build(${scope}): 🔖 Release ${component} v${version}",

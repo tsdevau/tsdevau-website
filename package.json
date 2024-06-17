@@ -1,6 +1,6 @@
 {
   "name": "@tsdevau/website",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "description": "tsdev.au website with Astro, Tailwind CSS, and TypeScript",
   "keywords": [
     "tsdev",
