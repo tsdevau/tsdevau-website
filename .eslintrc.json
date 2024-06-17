@@ -1,0 +1,69 @@
+{
+  "env": {
+    "astro/astro": true,
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:astro/recommended",
+    "plugin:tailwindcss/recommended"
+  ],
+  "overrides": [
+    {
+      // Define the configuration for `.astro` file.
+      "files": ["*.astro"],
+      // Allows Astro components to be parsed.
+      "parser": "astro-eslint-parser",
+      // Parse the script in `.astro` as TypeScript by adding the following configuration.
+      // It's the setting you need when using TypeScript.
+      "parserOptions": {
+        "extraFileExtensions": [".astro"],
+        "parser": "@typescript-eslint/parser"
+      },
+      "rules": {
+        "brace-style": "warn"
+      }
+    },
+    {
+      "env": {
+        "node": true
+      },
+      "files": [".eslintrc.{js,cjs}"],
+      "parserOptions": {
+        "sourceType": "script"
+      }
+    }
+  ],
+
+  // Define the configuration for `.ts` file.
+  "parser": "@typescript-eslint/parser",
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "off"
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint", "astro", "css", "mdx", "markdown", "prettier"],
+
+  // tailwind configuration.
+  "tailwindcss": {
+    "config": "tailwind.config.mjs",
+    "format": "auto",
+    "callees": ["css", "clsx", "ctl", "tw"],
+    "cssFiles": ["**/*.css", "!**/node_modules", "!**/.*", "!**/dist", "!**/build", "!**/.astro"],
+    "removeDuplicates": true,
+    "skipClassAttribute": false
+  },
+
+  // Common configuration for all files.
+  "root": true,
+  "ignorePatterns": ["node_modules", "backup"]
+}
