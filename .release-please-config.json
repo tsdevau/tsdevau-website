@@ -1,8 +1,5 @@
 {
-  "packages": {
-    ".": "1.0.1"
-  },
-  "package-name": "tsdev-au",
+  "package-name": "@tsdevau/website",
   "release-commit-message-pattern": "build(${scope}): 🔖 Release ${component} v${version}",
   "pull-request-title-pattern": "build(${scope}): 🔖 Release ${component} v${version}",
   "pull-request-header": ":robot: PR by release-please bot",
